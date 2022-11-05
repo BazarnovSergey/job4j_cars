@@ -31,4 +31,7 @@ public class Post {
     @JoinColumn(name = "auto_post_id")
     private List<PriceHistory> priceHistory;
 
+    @ManyToMany(mappedBy = "posts")
+    private List<User> users;
+
 }
