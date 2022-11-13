@@ -35,4 +35,8 @@ public class Post {
     @ManyToMany(mappedBy = "posts")
     private List<User> users = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
+
 }
