@@ -15,4 +15,5 @@
     <include file="scripts/009_ddl_init_driver.sql" relativeToChangelogFile="true"/>
     <include file="scripts/010_ddl_init_history_owner.sql" relativeToChangelogFile="true"/>
     <include file="scripts/011_ddl_create_column_car_id.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/012_ddl_create_columns_startAt_endAt.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
