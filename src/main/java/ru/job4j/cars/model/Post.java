@@ -27,6 +27,7 @@ public class Post {
     private String text;
     private LocalDate created;
     private Integer autoUserId;
+    private byte[] photo;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_post_id")
