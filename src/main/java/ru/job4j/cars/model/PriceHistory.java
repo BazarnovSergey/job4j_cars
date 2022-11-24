@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+/**
+ * Модель данных истории изменения цен
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

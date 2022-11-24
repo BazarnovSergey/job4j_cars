@@ -1,17 +1,19 @@
 package ru.job4j.cars.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Модель данных поста
+ */
+
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -25,7 +27,8 @@ public class Post {
     private Integer id;
 
     private String text;
-    private LocalDate created;
+    private LocalDateTime created = LocalDateTime.now();
+    @Column(name = "auto_user_id")
     private Integer autoUserId;
     private byte[] photo;
 

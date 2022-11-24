@@ -1,14 +1,23 @@
 package ru.job4j.cars.model;
 
-import lombok.Data;
+import lombok.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Модель данных пользователя
+ */
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "auto_user")
-@Data
 public class User {
 
     @Id
@@ -17,7 +26,7 @@ public class User {
     private String login;
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "participates",
             joinColumns = @JoinColumn(name = "user_id"),

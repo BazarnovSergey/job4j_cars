@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Хранилище пользователей
+ * @see ru.job4j.cars.model.User
+ */
+
 @Repository
 @AllArgsConstructor
 public class UserRepository {

@@ -7,12 +7,42 @@ import ru.job4j.cars.model.Post;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+/**
+ * Хранилище постов
+ * @see ru.job4j.cars.model.Post
+ */
 
 @Repository
 @AllArgsConstructor
 public class PostRepository {
 
     private final CrudRepository crudRepository;
+
+    /**
+     * Метод добавляет пост в таблицу auto_post
+     *
+     * @param post - пост
+     * @return объект Post
+     */
+    public Post add(Post post) {
+        crudRepository.run(session -> session.persist(post));
+        return post;
+    }
+
+    /**
+     * Метод находит в базе данных пост по id
+     *
+     * @param postId - id поста
+     * @return Optional<Post>
+     */
+    public Optional<Post> findById(int postId) {
+        return crudRepository.optional(
+                "select p from Post p where p.id = :fId", Post.class,
+                Map.of("fId", postId)
+        );
+    }
 
     /**
      * Метод возвращает из базы данных все посты за последний день
@@ -23,12 +53,11 @@ public class PostRepository {
      */
     public List<Post> getPostsFromTheLastDay() {
         var currentTime = LocalDateTime.now();
-        var currentTimeMinus24Hours = currentTime.minusHours(24);
+        var currentTimeMinus24Hours = LocalDateTime.now().minusHours(24);
         return crudRepository.query(
-                "select p from Post p where p.created between "
-                        + ":fCurrentTime and :fCurrentTimeMinus24Hours", Post.class,
-                Map.of("fCurrentTime", currentTime,
-                        "fCurrentTimeMinus24Hours", currentTimeMinus24Hours)
+                "FROM Post WHERE created BETWEEN :fCurrentTimeMinus24Hours AND :fCurrentTime", Post.class,
+                Map.of("fCurrentTimeMinus24Hours", currentTimeMinus24Hours,
+                        "fCurrentTime", currentTime)
         );
     }
 
@@ -48,10 +77,10 @@ public class PostRepository {
      * @param carBrand марка авто
      * @return коллекция List с постами
      */
+
     public List<Post> getPostsWithCertainBrandOfCar(String carBrand) {
         return crudRepository.query(
-                " select from Post p join fetch Car c where lower(c.name) like lower('%:fCarBrand%')",
+                "select p from Post p join fetch p.car c where c.name = :fCarBrand",
                 Post.class, Map.of("fCarBrand", carBrand));
     }
-
 }
