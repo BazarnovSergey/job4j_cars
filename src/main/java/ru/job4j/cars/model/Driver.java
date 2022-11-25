@@ -3,11 +3,9 @@ package ru.job4j.cars.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Модель данных водителя
+ * Модель данных владельца
  */
 
 @Data
@@ -26,7 +24,7 @@ public class Driver {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 

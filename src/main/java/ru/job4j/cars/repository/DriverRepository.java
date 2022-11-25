@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Хранилище водителей
+ * Хранилище владельцев авто
  * @see ru.job4j.cars.model.Driver
  */
 
@@ -19,9 +19,9 @@ public class DriverRepository {
     private final CrudRepository crudRepository;
 
     /**
-     * Метод добавляет водителя в таблицу driver
+     * Метод добавляет владельца в базу данных
      *
-     * @param driver - водитель
+     * @param driver - владелец
      * @return объект Driver
      */
     public Driver add(Driver driver) {
@@ -30,9 +30,9 @@ public class DriverRepository {
     }
 
     /**
-     * Метод находит водителя в базе данных по id
+     * Метод находит владельца в базе данных по id
      *
-     * @param driverId - id авто
+     * @param driverId - id владельца авто
      * @return Optional<Driver>
      */
     public Optional<Driver> findById(int driverId) {
