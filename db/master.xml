@@ -18,4 +18,7 @@
     <include file="scripts/012_ddl_create_columns_startAt_endAt.sql" relativeToChangelogFile="true"/>
     <include file="scripts/013_ddl_create_columns_photo.sql" relativeToChangelogFile="true"/>
     <include file="scripts/014_ddl_create_columns_driver_id.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/016_ddl_create_column_name_and_price.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/017_ddl_create_column_sale_status.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/018_ddl_create_column_phone.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
