@@ -32,7 +32,7 @@ class UserRepositoryTest {
     @Test
     public void whenAddUserThenDataBaseHasSameUser() {
         UserRepository userRepository = new UserRepository(new CrudRepository(SESSION_FACTORY));
-        User user = User.builder().login("admin").build();
+        User user = User.builder().login("admin").password("password").build();
         userRepository.create(user);
         User result = userRepository.findById(user.getId()).get();
         assertThat(result.getLogin()).isEqualTo(user.getLogin());
@@ -98,6 +98,16 @@ class UserRepositoryTest {
         userRepository.create(user3);
         User result = userRepository.findByLogin(user2.getLogin()).get();
         assertThat(result.getLogin()).isEqualTo(user2.getLogin());
+    }
+
+    @Test
+    public void whenFindByLoginAndPassword() {
+        UserRepository userRepository = new UserRepository(new CrudRepository(SESSION_FACTORY));
+        User user = User.builder().login("admin").password("password").build();
+        userRepository.create(user);
+        User userDb = userRepository.findByLoginAndPassword(user.getLogin(),user.getPassword()).get();
+        assertThat(userDb.getLogin()).isEqualTo(user.getLogin());
+        assertThat(userDb.getPassword()).isEqualTo(user.getPassword());
     }
 
 }
