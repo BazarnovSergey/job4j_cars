@@ -2,18 +2,21 @@ package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.User;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 /**
  * Хранилище пользователей
+ *
  * @see ru.job4j.cars.model.User
  */
-
+@Slf4j
 @Repository
 @AllArgsConstructor
 public class UserRepository {
@@ -22,16 +25,18 @@ public class UserRepository {
 
     /**
      * Сохранить в базе.
+     *
      * @param user пользователь.
      * @return пользователь с id.
      */
-    public User create(User user) {
+    public Optional<User> create(User user) {
         crudRepository.run(session -> session.persist(user));
-        return user;
+        return Optional.of(user);
     }
 
     /**
      * Обновить в базе пользователя.
+     *
      * @param user пользователь.
      */
     public void update(User user) {
@@ -40,6 +45,7 @@ public class UserRepository {
 
     /**
      * Удалить пользователя по id.
+     *
      * @param userId ID
      */
     public void delete(int userId) {
@@ -51,6 +57,7 @@ public class UserRepository {
 
     /**
      * Список пользователь отсортированных по id.
+     *
      * @return список пользователей.
      */
     public List<User> findAllOrderById() {
@@ -59,6 +66,7 @@ public class UserRepository {
 
     /**
      * Найти пользователя по ID
+     *
      * @return пользователь.
      */
     public Optional<User> findById(int userId) {
@@ -70,25 +78,41 @@ public class UserRepository {
 
     /**
      * Список пользователей по login LIKE %key%
+     *
      * @param key key
      * @return список пользователей.
      */
     public List<User> findByLikeLogin(String key) {
-        return crudRepository.query(
-                "from User where login like :fKey", User.class,
-                Map.of("fKey", "%" + key + "%")
-        );
+            return crudRepository.query(
+                    "from User where login like :fKey", User.class,
+                    Map.of("fKey", "%" + key + "%")
+            );
     }
 
     /**
      * Найти пользователя по login.
+     *
      * @param login login.
      * @return Optional or user.
      */
     public Optional<User> findByLogin(String login) {
+        try {
+            return crudRepository.optional(
+                    "from User where login = :fLogin", User.class,
+                    Map.of("fLogin", login)
+            );
+        } catch (NoResultException e) {
+            log.error("Пользователь не найден", e);
+            return Optional.empty();
+        }
+    }
+
+    public Optional<User> findByLoginAndPassword(String login, String password) {
+
         return crudRepository.optional(
-                "from User where login = :fLogin", User.class,
-                Map.of("fLogin", login)
+                "from User u where u.login = :fLogin and u.password = :fPassword", User.class,
+                Map.of("fLogin", login, "fPassword", password)
         );
     }
+
 }

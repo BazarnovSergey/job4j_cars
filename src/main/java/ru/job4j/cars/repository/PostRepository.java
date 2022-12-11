@@ -11,6 +11,7 @@ import java.util.Optional;
 
 /**
  * Хранилище постов
+ *
  * @see ru.job4j.cars.model.Post
  */
 
@@ -27,8 +28,17 @@ public class PostRepository {
      * @return объект Post
      */
     public Post add(Post post) {
-        crudRepository.run(session -> session.persist(post));
+        crudRepository.run(session -> session.save(post));
         return post;
+    }
+
+    /**
+     * Метод находит вcе объявления в базе данных
+     *
+     * @return List<Post>
+     */
+    public List<Post> findAll() {
+        return crudRepository.query("select p from Post p", Post.class);
     }
 
     /**
@@ -82,5 +92,27 @@ public class PostRepository {
         return crudRepository.query(
                 "select p from Post p join fetch p.car c where c.name = :fCarBrand",
                 Post.class, Map.of("fCarBrand", carBrand));
+    }
+
+    /**
+     * удаляет пост из базы данных
+     *
+     * @param post - объявление
+     */
+    public void delete(Post post) {
+        crudRepository.run(
+                "delete from Post where id = :fId",
+                Map.of("fId", post.getId())
+        );
+    }
+
+
+    /**
+     * обновляет информацию в объявлении
+     *
+     * @param post - объявление
+     */
+    public void update(Post post) {
+        crudRepository.run(session -> session.merge(post));
     }
 }
