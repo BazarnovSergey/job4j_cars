@@ -1,6 +1,6 @@
 CREATE TABLE if not exists auto_post (
    id SERIAL PRIMARY KEY,
    text TEXT,
-   created timestamp,
-   auto_user_id int
+   created TIMESTAMP,
+   auto_user_id INT REFERENCES auto_user(id)
 );

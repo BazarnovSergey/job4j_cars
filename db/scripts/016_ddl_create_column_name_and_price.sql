@@ -1,0 +1,2 @@
+ALTER TABLE auto_post ADD COLUMN name TEXT;
+ALTER TABLE auto_post ADD COLUMN price BIGINT;
