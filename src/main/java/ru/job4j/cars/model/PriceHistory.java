@@ -1,12 +1,9 @@
 package ru.job4j.cars.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Модель данных истории изменения цен
@@ -17,6 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Builder
 @Table(name = "price_history")
 public class PriceHistory {
 
@@ -26,6 +24,11 @@ public class PriceHistory {
     private Integer id;
     private Long before;
     private Long after;
-    private LocalDate created;
+    private LocalDateTime created = LocalDateTime.now();
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "auto_post_id")
+    private Post post;
 
 }

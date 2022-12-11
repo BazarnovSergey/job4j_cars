@@ -15,6 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
 @Entity
 @Table(name = "car")
 public class Car {
@@ -26,10 +27,12 @@ public class Car {
 
     private String name;
 
-    @ManyToOne
+    @ToString.Exclude
+    @ManyToOne()
     @JoinColumn(name = "engine_id")
     private Engine engine;
 
+    @ToString.Exclude
     @ManyToOne()
     @JoinColumn(name = "driver_id")
     private Driver driver;
@@ -39,6 +42,7 @@ public class Car {
             @JoinColumn(name = "car_id", nullable = false, updatable = false)},
             inverseJoinColumns = {
                     @JoinColumn(name = "driver_id", nullable = false, updatable = false)})
+    @ToString.Exclude
     private Set<Driver> drivers = new HashSet<>();
 
 }

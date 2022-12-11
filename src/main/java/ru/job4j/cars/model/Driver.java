@@ -24,8 +24,16 @@ public class Driver {
 
     private String name;
 
+    private String phone;
+
+    @ToString.Exclude
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public void setUser(User user) {
+        user.setDriver(this);
+        this.user = user;
+    }
 
 }

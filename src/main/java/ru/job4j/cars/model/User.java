@@ -1,7 +1,6 @@
 package ru.job4j.cars.model;
 
 import lombok.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,16 +21,26 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id")
+    private int id;
     private String login;
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "participates",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "post_id")
-    )
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "participates", fetch = FetchType.EAGER)
     private List<Post> posts = new ArrayList<>();
+
+    @ToString.Exclude
+    @OneToOne(
+            mappedBy = "user")
+    private Driver driver;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 }
