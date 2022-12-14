@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 import static ru.job4j.cars.util.CheckHttpSession.checkUserAuthorization;
@@ -70,7 +71,8 @@ public class PostController {
         model.addAttribute("post", optionalPost.get());
         User user = (User) httpSession.getAttribute("user");
         checkUserAuthorization(model, user);
-        if (post.getUser().getId() == user.getId()) {
+        if (post.getUser().getId() == user.getId()
+        || Objects.equals(user.getLogin(), "Administrator")) {
             return "userPost";
         }
         return "post";

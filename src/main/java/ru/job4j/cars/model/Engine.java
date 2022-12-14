@@ -19,7 +19,6 @@ public class Engine {
     /**
      * Идентификаор двигателя
      *
-     * @see ru.job4j.cars.model.Driver
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
