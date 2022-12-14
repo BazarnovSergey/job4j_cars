@@ -21,4 +21,6 @@
     <include file="scripts/016_ddl_create_column_name_and_price.sql" relativeToChangelogFile="true"/>
     <include file="scripts/017_ddl_create_column_sale_status.sql" relativeToChangelogFile="true"/>
     <include file="scripts/018_ddl_create_column_phone.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/019_ddl_init_auto_user_admin.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/020_ddl_change_column_auto_post_id.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
