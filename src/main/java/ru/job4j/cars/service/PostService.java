@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.model.Post;
-import ru.job4j.cars.repository.PostRepository;
+import ru.job4j.cars.repository.PostRepositoryImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +14,9 @@ import java.util.Optional;
 @Data
 @AllArgsConstructor
 @Slf4j
-public class PostService {
+public class PostService implements PostServiceImpl {
 
-    private final PostRepository postRepository;
+    private final PostRepositoryImpl postRepository;
 
     /**
      * Метод находит вcе объявления в базе данных

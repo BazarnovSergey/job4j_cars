@@ -2,7 +2,7 @@ package ru.job4j.cars.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.model.User;
-import ru.job4j.cars.repository.UserRepository;
+import ru.job4j.cars.repository.UserRepositoryImpl;
 
 import java.time.ZoneId;
 import java.util.HashSet;
@@ -10,11 +10,11 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class UserService {
+public class UserService implements UserServiceImpl {
 
-    private final UserRepository userRepository;
+    private final UserRepositoryImpl userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepositoryImpl userRepository) {
         this.userRepository = userRepository;
     }
 

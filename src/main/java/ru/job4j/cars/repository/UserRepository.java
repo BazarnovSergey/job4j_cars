@@ -19,9 +19,9 @@ import java.util.Optional;
 @Slf4j
 @Repository
 @AllArgsConstructor
-public class UserRepository {
+public class UserRepository implements UserRepositoryImpl {
 
-    private final CrudRepository crudRepository;
+    private final CrudRepositoryImpl crudRepository;
 
     /**
      * Сохранить в базе.
@@ -83,10 +83,10 @@ public class UserRepository {
      * @return список пользователей.
      */
     public List<User> findByLikeLogin(String key) {
-            return crudRepository.query(
-                    "from User where login like :fKey", User.class,
-                    Map.of("fKey", "%" + key + "%")
-            );
+        return crudRepository.query(
+                "from User where login like :fKey", User.class,
+                Map.of("fKey", "%" + key + "%")
+        );
     }
 
     /**
@@ -108,11 +108,15 @@ public class UserRepository {
     }
 
     public Optional<User> findByLoginAndPassword(String login, String password) {
-
-        return crudRepository.optional(
-                "from User u where u.login = :fLogin and u.password = :fPassword", User.class,
-                Map.of("fLogin", login, "fPassword", password)
-        );
+        try {
+            return crudRepository.optional(
+                    "from User u where u.login = :fLogin and u.password = :fPassword", User.class,
+                    Map.of("fLogin", login, "fPassword", password)
+            );
+        } catch (Exception e) {
+            log.error("Пользователь не найден", e);
+            return Optional.empty();
+        }
     }
 
 }

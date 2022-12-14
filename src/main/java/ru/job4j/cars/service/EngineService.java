@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.model.Engine;
-import ru.job4j.cars.repository.EngineRepository;
+import ru.job4j.cars.repository.EngineRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +14,14 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @Slf4j
-public class EngineService {
+public class EngineService implements EngineServiceImpl {
 
     private final static List<String> ENGINE_CAPACITY = List.of(
             "1.4", "1.5", "1.6", "1.8", "2.0", "2.2",
             "2.5", "3.0", "3.5"
     );
 
-    private final EngineRepository engineRepository;
+    private final EngineRepositoryImpl engineRepository;
 
     public Engine add(Engine engine) {
         return engineRepository.add(engine);

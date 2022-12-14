@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import ru.job4j.cars.model.*;
-import ru.job4j.cars.service.CarService;
-import ru.job4j.cars.service.DriverService;
-import ru.job4j.cars.service.EngineService;
-import ru.job4j.cars.service.PostService;
+import ru.job4j.cars.service.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,13 +25,13 @@ import static ru.job4j.cars.util.CheckHttpSession.checkUserAuthorization;
 @Controller
 public class PostController {
 
-    private final PostService postService;
-    private final CarService carService;
-    private final EngineService engineService;
-    private final DriverService driverService;
+    private final PostServiceImpl postService;
+    private final CarServiceImpl carService;
+    private final EngineServiceImpl engineService;
+    private final DriverServiceImpl driverService;
 
-
-    public PostController(PostService postService, CarService carService, EngineService engineService, DriverService driverService) {
+    public PostController(PostServiceImpl postService, CarServiceImpl carService,
+                          EngineServiceImpl engineService, DriverServiceImpl driverService) {
         this.postService = postService;
         this.carService = carService;
         this.engineService = engineService;

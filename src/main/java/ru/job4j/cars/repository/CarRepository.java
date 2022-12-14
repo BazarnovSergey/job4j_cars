@@ -9,14 +9,15 @@ import java.util.Optional;
 
 /**
  * Хранилище авто
+ *
  * @see ru.job4j.cars.model.Car
  */
 
 @Repository
 @AllArgsConstructor
-public class CarRepository {
+public class CarRepository implements CarRepositoryImpl {
 
-    private final CrudRepository crudRepository;
+    private final CrudRepositoryImpl crudRepository;
 
     /**
      * Метод добавляет авто в таблицу car

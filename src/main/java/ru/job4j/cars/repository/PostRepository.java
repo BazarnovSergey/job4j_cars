@@ -17,9 +17,9 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class PostRepository {
+public class PostRepository implements PostRepositoryImpl {
 
-    private final CrudRepository crudRepository;
+    private final CrudRepositoryImpl crudRepository;
 
     /**
      * Метод добавляет пост в таблицу auto_post

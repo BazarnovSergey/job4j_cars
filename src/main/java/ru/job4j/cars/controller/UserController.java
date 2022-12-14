@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.cars.model.User;
-import ru.job4j.cars.service.UserService;
+import ru.job4j.cars.service.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,11 +16,12 @@ import java.util.Optional;
 @Controller
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
+
 
     @PostMapping("/registration")
     public String registration(Model model, @ModelAttribute User user) {
@@ -58,11 +59,11 @@ public class UserController {
     public String login(@ModelAttribute User user, HttpServletRequest req) {
         Optional<User> userDb = userService.findByLoginAndPassword(user.getLogin(), user.getPassword());
         if (userDb.isEmpty()) {
-            return "redirect:/posts";
+            return "redirect:/loginPage?fail=true";
         }
         HttpSession session = req.getSession();
         session.setAttribute("user", userDb.get());
-        return "redirect:/posts";
+        return "redirect:/index";
     }
 
     @GetMapping("/logout")

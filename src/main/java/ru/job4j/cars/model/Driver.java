@@ -17,15 +17,29 @@ import javax.persistence.*;
 @Table(name = "driver")
 public class Driver {
 
+    /**
+     * Идентификатор владельца
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private int id;
 
+    /**
+     * Имя владельца
+     */
     private String name;
 
+    /**
+     * Телефон водителя
+     */
     private String phone;
 
+    /**
+     * Пользователь
+     *
+     * @see ru.job4j.cars.model.User
+     */
     @ToString.Exclude
     @OneToOne
     @JoinColumn(name = "user_id")

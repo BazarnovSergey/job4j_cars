@@ -15,9 +15,9 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class EngineRepository {
+public class EngineRepository implements EngineRepositoryImpl {
 
-    private final CrudRepository crudRepository;
+    private final CrudRepositoryImpl crudRepository;
 
     /**
      * Метод добавляет двигатель в таблицу Engine

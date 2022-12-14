@@ -9,14 +9,15 @@ import java.util.Optional;
 
 /**
  * Хранилище владельцев авто
+ *
  * @see ru.job4j.cars.model.Driver
  */
 
 @Repository
 @AllArgsConstructor
-public class DriverRepository {
+public class DriverRepository implements DriverRepositoryImpl {
 
-    private final CrudRepository crudRepository;
+    private final CrudRepositoryImpl crudRepository;
 
     /**
      * Метод добавляет владельца в базу данных

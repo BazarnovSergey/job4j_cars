@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.model.Driver;
-import ru.job4j.cars.repository.DriverRepository;
+import ru.job4j.cars.repository.DriverRepositoryImpl;
 
 import java.util.Optional;
 
@@ -14,9 +14,9 @@ import java.util.Optional;
 @Data
 @AllArgsConstructor
 @Slf4j
-public class DriverService {
+public class DriverService implements DriverServiceImpl {
 
-    private final DriverRepository driverRepository;
+    private final DriverRepositoryImpl driverRepository;
 
     public Driver add(Driver driver) {
         return driverRepository.add(driver);

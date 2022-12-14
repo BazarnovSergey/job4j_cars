@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.model.Car;
-import ru.job4j.cars.repository.CarRepository;
+import ru.job4j.cars.repository.CarRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +14,14 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @Slf4j
-public class CarService {
+public class CarService implements CarServiceImpl {
 
     private final static List<String> CAR_MARKS = List.of(
             "Audi", "BMW", "KIA", "Skoda", "Toyota", "ВАЗ",
             "Volkswagen", "Volvo", "Opel", "Lexus", "Mazda", "Mercedes"
     );
 
-    private final CarRepository carRepository;
+    private final CarRepositoryImpl carRepository;
 
     public Car add(Car car) {
         return carRepository.add(car);
