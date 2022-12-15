@@ -8,7 +8,7 @@
     <include file="scripts/001_ddl_init_auto_user.sql" relativeToChangelogFile="true"/>
     <include file="scripts/002_ddl_init_auto_post.sql" relativeToChangelogFile="true"/>
     <include file="scripts/004_ddl_add_auto_user.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/005_init_add_price_history.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/005_ddl_init_add_price_history.sql" relativeToChangelogFile="true"/>
     <include file="scripts/006_ddl_create_participates_table.sql" relativeToChangelogFile="true"/>
     <include file="scripts/007_ddl_init_engine.sql" relativeToChangelogFile="true"/>
     <include file="scripts/008_ddl_init_car.sql" relativeToChangelogFile="true"/>
