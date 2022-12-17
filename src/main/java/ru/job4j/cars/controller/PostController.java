@@ -26,13 +26,13 @@ import static ru.job4j.cars.util.CheckHttpSession.checkUserAuthorization;
 @Controller
 public class PostController {
 
-    private final PostServiceImpl postService;
-    private final CarServiceImpl carService;
-    private final EngineServiceImpl engineService;
-    private final DriverServiceImpl driverService;
+    private final PostService postService;
+    private final CarService carService;
+    private final EngineService engineService;
+    private final DriverService driverService;
 
-    public PostController(PostServiceImpl postService, CarServiceImpl carService,
-                          EngineServiceImpl engineService, DriverServiceImpl driverService) {
+    public PostController(PostService postService, CarService carService,
+                          EngineService engineService, DriverService driverService) {
         this.postService = postService;
         this.carService = carService;
         this.engineService = engineService;

@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UserRepositoryTest {
+class HibernateUserRepositoryTest {
 
     private static final StandardServiceRegistry REGISTRY = new StandardServiceRegistryBuilder().configure().build();
     private static final SessionFactory SESSION_FACTORY = new MetadataSources(REGISTRY).buildMetadata().buildSessionFactory();
@@ -31,7 +31,7 @@ class UserRepositoryTest {
 
     @Test
     public void whenAddUserThenDataBaseHasSameUser() {
-        UserRepository userRepository = new UserRepository(new CrudRepository(SESSION_FACTORY));
+        HibernateUserRepository userRepository = new HibernateUserRepository(new HibernateCrudRepository(SESSION_FACTORY));
         User user = User.builder().login("admin").password("password").build();
         userRepository.create(user);
         User result = userRepository.findById(user.getId()).get();
@@ -40,7 +40,7 @@ class UserRepositoryTest {
 
     @Test
     public void whenUpdateUserThenDataBaseHasSameUser() {
-        UserRepository userRepository = new UserRepository(new CrudRepository(SESSION_FACTORY));
+        HibernateUserRepository userRepository = new HibernateUserRepository(new HibernateCrudRepository(SESSION_FACTORY));
         User user = User.builder().login("admin").build();
         userRepository.create(user);
         user.setLogin("guest");
@@ -51,7 +51,7 @@ class UserRepositoryTest {
 
     @Test
     public void whenDeleteUser() {
-        UserRepository userRepository = new UserRepository(new CrudRepository(SESSION_FACTORY));
+        HibernateUserRepository userRepository = new HibernateUserRepository(new HibernateCrudRepository(SESSION_FACTORY));
         User user = User.builder().login("admin").password("password").build();
         userRepository.create(user);
         userRepository.delete(user.getId());
@@ -61,7 +61,7 @@ class UserRepositoryTest {
 
     @Test
     public void whenFindAllOrderById() {
-        UserRepository userRepository = new UserRepository(new CrudRepository(SESSION_FACTORY));
+        HibernateUserRepository userRepository = new HibernateUserRepository(new HibernateCrudRepository(SESSION_FACTORY));
         User user1 = User.builder().login("admin").build();
         User user2 = User.builder().login("guest").build();
         User user3 = User.builder().login("user").build();
@@ -76,7 +76,7 @@ class UserRepositoryTest {
 
     @Test
     public void whenFindByLikeLogin() {
-        UserRepository userRepository = new UserRepository(new CrudRepository(SESSION_FACTORY));
+        HibernateUserRepository userRepository = new HibernateUserRepository(new HibernateCrudRepository(SESSION_FACTORY));
         User user1 = User.builder().login("administrator").password("password").build();
         User user2 = User.builder().login("super_admin").password("password").build();
         User user3 = User.builder().login("user").password("password").build();
@@ -89,7 +89,7 @@ class UserRepositoryTest {
 
     @Test
     public void whenFindByLogin() {
-        UserRepository userRepository = new UserRepository(new CrudRepository(SESSION_FACTORY));
+        HibernateUserRepository userRepository = new HibernateUserRepository(new HibernateCrudRepository(SESSION_FACTORY));
         User user1 = User.builder().login("admin").build();
         User user2 = User.builder().login("guest").build();
         User user3 = User.builder().login("user").build();
@@ -102,7 +102,7 @@ class UserRepositoryTest {
 
     @Test
     public void whenFindByLoginAndPassword() {
-        UserRepository userRepository = new UserRepository(new CrudRepository(SESSION_FACTORY));
+        HibernateUserRepository userRepository = new HibernateUserRepository(new HibernateCrudRepository(SESSION_FACTORY));
         User user = User.builder().login("admin").password("password").build();
         userRepository.create(user);
         User userDb = userRepository.findByLoginAndPassword(user.getLogin(),user.getPassword()).get();

@@ -12,7 +12,7 @@ import ru.job4j.cars.model.Engine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CarRepositoryTest {
+class HibernateCarRepositoryTest {
 
     private static final StandardServiceRegistry REGISTRY = new StandardServiceRegistryBuilder().configure().build();
     private static final SessionFactory SESSION_FACTORY = new MetadataSources(REGISTRY).buildMetadata().buildSessionFactory();
@@ -30,8 +30,8 @@ class CarRepositoryTest {
 
     @Test
     public void whenAddCarThenDataBaseHasSameCar() {
-        CarRepository carStore = new CarRepository(new CrudRepository(SESSION_FACTORY));
-        EngineRepository engineStore = new EngineRepository(new CrudRepository(SESSION_FACTORY));
+        HibernateCarRepository carStore = new HibernateCarRepository(new HibernateCrudRepository(SESSION_FACTORY));
+        HibernateEngineRepository engineStore = new HibernateEngineRepository(new HibernateCrudRepository(SESSION_FACTORY));
         Engine engine = Engine.builder().name("2.4").build();
         engineStore.add(engine);
         Car car = Car.builder().name("Audi").engine(engine).build();
@@ -42,8 +42,8 @@ class CarRepositoryTest {
 
     @Test
     public void whenFindByIdThenDataBaseReturnOptionalCar() {
-        CarRepository cartStore = new CarRepository(new CrudRepository(SESSION_FACTORY));
-        EngineRepository engineStore = new EngineRepository(new CrudRepository(SESSION_FACTORY));
+        HibernateCarRepository cartStore = new HibernateCarRepository(new HibernateCrudRepository(SESSION_FACTORY));
+        HibernateEngineRepository engineStore = new HibernateEngineRepository(new HibernateCrudRepository(SESSION_FACTORY));
         Engine engine1 = Engine.builder().name("2.4").build();
         Engine engine2 = Engine.builder().name("2.0").build();
         Engine engine3 = Engine.builder().name("1.8").build();

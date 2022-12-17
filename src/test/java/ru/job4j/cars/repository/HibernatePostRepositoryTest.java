@@ -18,7 +18,7 @@ import ru.job4j.cars.model.Post;
 import java.time.LocalDateTime;
 import java.util.List;
 
-class PostRepositoryTest {
+class HibernatePostRepositoryTest {
 
     private static final StandardServiceRegistry REGISTRY = new StandardServiceRegistryBuilder().configure().build();
     private static final SessionFactory SESSION_FACTORY = new MetadataSources(REGISTRY).buildMetadata().buildSessionFactory();
@@ -36,7 +36,7 @@ class PostRepositoryTest {
 
     @Test
     public void whenAddPostsThenDataBaseHasSamePost() {
-        PostRepository postStore = new PostRepository(new CrudRepository(SESSION_FACTORY));
+        HibernatePostRepository postStore = new HibernatePostRepository(new HibernateCrudRepository(SESSION_FACTORY));
         Post post = Post.builder().text("text").build();
         postStore.add(post);
         Post result = postStore.findById(post.getId()).get();
@@ -45,7 +45,7 @@ class PostRepositoryTest {
 
     @Test
     public void whenFindByIdThenDataBaseReturnOptionalPost() {
-        PostRepository postStore = new PostRepository(new CrudRepository(SESSION_FACTORY));
+        HibernatePostRepository postStore = new HibernatePostRepository(new HibernateCrudRepository(SESSION_FACTORY));
         Post post = Post.builder().text("text").build();
         Post post2 = Post.builder().text("text2").build();
         Post post3 = Post.builder().text("text3").build();
@@ -58,7 +58,7 @@ class PostRepositoryTest {
 
     @Test
     public void whenGetPostsFromTheLastDay() {
-        PostRepository postStore = new PostRepository(new CrudRepository(SESSION_FACTORY));
+        HibernatePostRepository postStore = new HibernatePostRepository(new HibernateCrudRepository(SESSION_FACTORY));
         Post post = Post.builder().created(LocalDateTime.now()).build();
         Post post2 = Post.builder().created(LocalDateTime.now().minusDays(2L)).build();
         postStore.add(post);
@@ -70,7 +70,7 @@ class PostRepositoryTest {
 
     @Test
     public void whenGetPostsWithPhoto() {
-        PostRepository postStore = new PostRepository(new CrudRepository(SESSION_FACTORY));
+        HibernatePostRepository postStore = new HibernatePostRepository(new HibernateCrudRepository(SESSION_FACTORY));
         Post post = Post.builder().photo(new byte[10]).build();
         Post post2 = Post.builder().build();
         postStore.add(post);
@@ -82,9 +82,9 @@ class PostRepositoryTest {
 
     @Test
     public void whenGetPostsWithCertainBrandOfCar() {
-        EngineRepository engineStore = new EngineRepository(new CrudRepository(SESSION_FACTORY));
-        CarRepository carStore = new CarRepository(new CrudRepository(SESSION_FACTORY));
-        PostRepository postStore = new PostRepository(new CrudRepository(SESSION_FACTORY));
+        HibernateEngineRepository engineStore = new HibernateEngineRepository(new HibernateCrudRepository(SESSION_FACTORY));
+        HibernateCarRepository carStore = new HibernateCarRepository(new HibernateCrudRepository(SESSION_FACTORY));
+        HibernatePostRepository postStore = new HibernatePostRepository(new HibernateCrudRepository(SESSION_FACTORY));
         Engine engine1 = Engine.builder().name("2.4").build();
         Engine engine2 = Engine.builder().name("2.0").build();
         engineStore.add(engine1);

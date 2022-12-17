@@ -7,10 +7,10 @@ import ru.job4j.cars.model.Car;
 import ru.job4j.cars.model.Driver;
 import ru.job4j.cars.model.Engine;
 import ru.job4j.cars.model.Post;
-import ru.job4j.cars.service.CarService;
-import ru.job4j.cars.service.DriverService;
-import ru.job4j.cars.service.EngineService;
-import ru.job4j.cars.service.PostService;
+import ru.job4j.cars.service.SimpleCarService;
+import ru.job4j.cars.service.SimpleDriverService;
+import ru.job4j.cars.service.SimpleEngineService;
+import ru.job4j.cars.service.SimplePostService;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -60,17 +60,17 @@ class PostControllerTest {
                         .build()
         );
         Model model = mock(Model.class);
-        PostService postService = mock(PostService.class);
+        SimplePostService simplePostService = mock(SimplePostService.class);
         HttpSession session = mock(HttpSession.class);
-        when(postService.findAll()).thenReturn(posts);
-        CarService carService = mock(CarService.class);
-        EngineService engineService = mock(EngineService.class);
-        DriverService driverService = mock(DriverService.class);
+        when(simplePostService.findAll()).thenReturn(posts);
+        SimpleCarService simpleCarService = mock(SimpleCarService.class);
+        SimpleEngineService simpleEngineService = mock(SimpleEngineService.class);
+        SimpleDriverService simpleDriverService = mock(SimpleDriverService.class);
         PostController postController = new PostController(
-                postService,
-                carService,
-                engineService,
-                driverService
+                simplePostService,
+                simpleCarService,
+                simpleEngineService,
+                simpleDriverService
         );
         String page = postController.allPosts(model, session);
         verify(model).addAttribute("allPosts", posts);
@@ -105,20 +105,20 @@ class PostControllerTest {
         Model model = mock(Model.class);
         MockMultipartFile multipartFile = new MockMultipartFile("file", new byte[10]);
         HttpSession session = mock(HttpSession.class);
-        PostService postService = mock(PostService.class);
-        CarService carService = mock(CarService.class);
-        EngineService engineService = mock(EngineService.class);
-        DriverService driverService = mock(DriverService.class);
+        SimplePostService simplePostService = mock(SimplePostService.class);
+        SimpleCarService simpleCarService = mock(SimpleCarService.class);
+        SimpleEngineService simpleEngineService = mock(SimpleEngineService.class);
+        SimpleDriverService simpleDriverService = mock(SimpleDriverService.class);
 
         PostController postController = new PostController(
-                postService,
-                carService,
-                engineService,
-                driverService
+                simplePostService,
+                simpleCarService,
+                simpleEngineService,
+                simpleDriverService
         );
         String page = postController.createPost(input, car.getName(), model,
                 "1.6", multipartFile, session);
-        verify(postService).add(input);
+        verify(simplePostService).add(input);
         assertThat(page, is("redirect:/posts"));
     }
 
@@ -160,23 +160,23 @@ class PostControllerTest {
         Model model = mock(Model.class);
         MockMultipartFile multipartFile = new MockMultipartFile("file", new byte[10]);
         HttpSession session = mock(HttpSession.class);
-        PostService postService = mock(PostService.class);
-        when(postService.findById(input2.getId())).thenReturn(Optional.of(input2));
-        CarService carService = mock(CarService.class);
-        EngineService engineService = mock(EngineService.class);
-        DriverService driverService = mock(DriverService.class);
+        SimplePostService simplePostService = mock(SimplePostService.class);
+        when(simplePostService.findById(input2.getId())).thenReturn(Optional.of(input2));
+        SimpleCarService simpleCarService = mock(SimpleCarService.class);
+        SimpleEngineService simpleEngineService = mock(SimpleEngineService.class);
+        SimpleDriverService simpleDriverService = mock(SimpleDriverService.class);
 
         PostController postController = new PostController(
-                postService,
-                carService,
-                engineService,
-                driverService
+                simplePostService,
+                simpleCarService,
+                simpleEngineService,
+                simpleDriverService
         );
         postController.createPost(input, car.getName(), model,
                 "1.6", multipartFile, session);
         String page = postController.updatePost(input2, car.getName(), "1.6"
                 , multipartFile, session);
-        verify(postService).update(input2);
+        verify(simplePostService).update(input2);
         assertThat(page, is("redirect:/posts"));
     }
 
@@ -192,17 +192,17 @@ class PostControllerTest {
         );
         Model model = mock(Model.class);
         HttpSession session = mock(HttpSession.class);
-        PostService postService = mock(PostService.class);
-        CarService carService = mock(CarService.class);
-        EngineService engineService = mock(EngineService.class);
-        DriverService driverService = mock(DriverService.class);
-        when(carService.getCarMarks()).thenReturn(carMarks);
-        when(engineService.getEngineCapacity()).thenReturn(engineCapacity);
+        SimplePostService simplePostService = mock(SimplePostService.class);
+        SimpleCarService simpleCarService = mock(SimpleCarService.class);
+        SimpleEngineService simpleEngineService = mock(SimpleEngineService.class);
+        SimpleDriverService simpleDriverService = mock(SimpleDriverService.class);
+        when(simpleCarService.getCarMarks()).thenReturn(carMarks);
+        when(simpleEngineService.getEngineCapacity()).thenReturn(engineCapacity);
         PostController postController = new PostController(
-                postService,
-                carService,
-                engineService,
-                driverService
+                simplePostService,
+                simpleCarService,
+                simpleEngineService,
+                simpleDriverService
         );
         String page = postController.formAddPost(model,session);
         verify(model).addAttribute("marks", carMarks);
