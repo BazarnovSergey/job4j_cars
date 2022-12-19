@@ -174,8 +174,8 @@ class PostControllerTest {
         );
         postController.createPost(input, car.getName(), model,
                 "1.6", multipartFile, session);
-        String page = postController.updatePost(input2, car.getName(), "1.6"
-                , multipartFile, session);
+        String page = postController.updatePost(input2, car.getName(), "1.6",
+                multipartFile, session);
         verify(simplePostService).update(input2);
         assertThat(page, is("redirect:/posts"));
     }
@@ -204,7 +204,7 @@ class PostControllerTest {
                 simpleEngineService,
                 simpleDriverService
         );
-        String page = postController.formAddPost(model,session);
+        String page = postController.formAddPost(model, session);
         verify(model).addAttribute("marks", carMarks);
         verify(model).addAttribute("engineCapacity", engineCapacity);
         assertThat(page, is("addNewPost"));

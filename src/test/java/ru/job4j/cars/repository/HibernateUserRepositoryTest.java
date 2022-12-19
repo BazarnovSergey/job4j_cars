@@ -105,7 +105,7 @@ class HibernateUserRepositoryTest {
         HibernateUserRepository userRepository = new HibernateUserRepository(new HibernateCrudRepository(SESSION_FACTORY));
         User user = User.builder().login("admin").password("password").build();
         userRepository.create(user);
-        User userDb = userRepository.findByLoginAndPassword(user.getLogin(),user.getPassword()).get();
+        User userDb = userRepository.findByLoginAndPassword(user.getLogin(), user.getPassword()).get();
         assertThat(userDb.getLogin()).isEqualTo(user.getLogin());
         assertThat(userDb.getPassword()).isEqualTo(user.getPassword());
     }
