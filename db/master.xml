@@ -5,22 +5,24 @@
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-    <include file="scripts/001_ddl_init_auto_user.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/002_ddl_init_auto_post.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/004_ddl_add_auto_user.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/005_ddl_init_add_price_history.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/006_ddl_create_participates_table.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/007_ddl_init_engine.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/008_ddl_init_car.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/009_ddl_init_driver.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/010_ddl_init_history_owner.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/001_ddl_create_table_auto_user.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/002_ddl_create_table_auto_post.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/004_dml_init_add_auto_user.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/005_ddl_create_table_add_price_history.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/006_ddl_create_table_participates_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/007_ddl_create_table_engine.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/008_ddl_create_table_car.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/009_ddl_create_table_driver.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/010_ddl_create_table_history_owner.sql" relativeToChangelogFile="true"/>
     <include file="scripts/011_ddl_create_column_car_id.sql" relativeToChangelogFile="true"/>
     <include file="scripts/012_ddl_create_columns_startAt_endAt.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/013_ddl_create_columns_photo.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/014_ddl_create_columns_driver_id.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/013_ddl_create_column_photo.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/014_ddl_create_column_driver_id.sql" relativeToChangelogFile="true"/>
     <include file="scripts/016_ddl_create_column_name_and_price.sql" relativeToChangelogFile="true"/>
     <include file="scripts/017_ddl_create_column_sale_status.sql" relativeToChangelogFile="true"/>
     <include file="scripts/018_ddl_create_column_phone.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/019_ddl_init_auto_user_admin.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/019_dml_init_auto_user_admin.sql" relativeToChangelogFile="true"/>
     <include file="scripts/020_ddl_change_column_auto_post_id.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/021_ddl_change_column_login_from_table_auto_user.sql" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>
