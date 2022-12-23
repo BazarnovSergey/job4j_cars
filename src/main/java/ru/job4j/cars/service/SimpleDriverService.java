@@ -11,7 +11,6 @@ import java.util.Optional;
 
 
 @Service
-@Data
 @AllArgsConstructor
 @Slf4j
 public class SimpleDriverService implements DriverService {

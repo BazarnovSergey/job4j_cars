@@ -40,7 +40,7 @@ public class User {
      * Объявления пользователя
      */
     @ToString.Exclude
-    @ManyToMany(mappedBy = "participates", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "participates")
     private List<Post> posts = new ArrayList<>();
 
     /**

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Data
 @AllArgsConstructor
 @Slf4j
 public class SimpleEngineService implements EngineService {
