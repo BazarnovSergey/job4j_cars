@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface EngineService {
 
-    public Engine add(Engine engine);
+    public List<Engine> findAll();
 
-    public List<String> getEngineCapacity();
+    public Engine add(Engine engine);
 
 }

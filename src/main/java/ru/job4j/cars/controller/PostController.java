@@ -55,7 +55,7 @@ public class PostController {
         checkUserAuthorization(model, user);
         model.addAttribute("user", user);
         model.addAttribute("marks", carService.getCarMarks());
-        model.addAttribute("engineCapacity", engineService.getEngineCapacity());
+        model.addAttribute("engineCapacity", engineService.findAll());
         model.addAttribute("user", user);
         return "addNewPost";
     }
@@ -130,7 +130,7 @@ public class PostController {
         }
         model.addAttribute("post", optionalPost.get());
         model.addAttribute("marks", carService.getCarMarks());
-        model.addAttribute("engineCapacity", engineService.getEngineCapacity());
+        model.addAttribute("engineCapacity", engineService.findAll());
         User user = (User) httpSession.getAttribute("user");
         checkUserAuthorization(model, user);
         return "updatePost";

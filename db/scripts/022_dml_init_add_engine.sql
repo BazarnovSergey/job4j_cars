@@ -1,0 +1,9 @@
+INSERT INTO engine (name) VALUES ('1.4');
+INSERT INTO engine (name) VALUES ('1.5');
+INSERT INTO engine (name) VALUES ('1.6');
+INSERT INTO engine (name) VALUES ('1.8');
+INSERT INTO engine (name) VALUES ('2.0');
+INSERT INTO engine (name) VALUES ('2.2');
+INSERT INTO engine (name) VALUES ('2.5');
+INSERT INTO engine (name) VALUES ('3.0');
+INSERT INTO engine (name) VALUES ('3.5');

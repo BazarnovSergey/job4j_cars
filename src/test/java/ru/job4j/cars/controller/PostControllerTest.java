@@ -186,9 +186,10 @@ class PostControllerTest {
                 "Audi", "BMW", "KIA", "Skoda", "Toyota", "ВАЗ",
                 "Volkswagen", "Volvo", "Opel", "Lexus", "Mazda", "Mercedes"
         );
-        List<String> engineCapacity = List.of(
-                "1.4", "1.5", "1.6", "1.8", "2.0", "2.2",
-                "2.5", "3.0", "3.5"
+        List<Engine> engineCapacity = List.of(
+                new Engine(1, "1.6"),
+                new Engine(2, "1.8"),
+                new Engine(3, "2.0")
         );
         Model model = mock(Model.class);
         HttpSession session = mock(HttpSession.class);
@@ -197,7 +198,7 @@ class PostControllerTest {
         SimpleEngineService simpleEngineService = mock(SimpleEngineService.class);
         SimpleDriverService simpleDriverService = mock(SimpleDriverService.class);
         when(simpleCarService.getCarMarks()).thenReturn(carMarks);
-        when(simpleEngineService.getEngineCapacity()).thenReturn(engineCapacity);
+        when(simpleEngineService.findAll()).thenReturn(engineCapacity);
         PostController postController = new PostController(
                 simplePostService,
                 simpleCarService,

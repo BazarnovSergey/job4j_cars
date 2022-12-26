@@ -43,7 +43,7 @@ public class Car {
     private Engine engine;
 
     /**
-     * Водитель автомобиля
+     * Владелец автомобиля
      *
      * @see ru.job4j.cars.model.Driver
      */

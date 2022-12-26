@@ -3,6 +3,8 @@ package ru.job4j.cars.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Модель данных владельца
@@ -44,6 +46,13 @@ public class Driver {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    /**
+     * Автомобили принадлежащие владельцу
+     */
+    @ToString.Exclude
+    @OneToMany(mappedBy = "driver")
+    private List<Car> cars = new ArrayList<>();
 
     public void setUser(User user) {
         user.setDriver(this);

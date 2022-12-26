@@ -7,7 +7,6 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
     <include file="scripts/001_ddl_create_table_auto_user.sql" relativeToChangelogFile="true"/>
     <include file="scripts/002_ddl_create_table_auto_post.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/004_dml_init_add_auto_user.sql" relativeToChangelogFile="true"/>
     <include file="scripts/005_ddl_create_table_add_price_history.sql" relativeToChangelogFile="true"/>
     <include file="scripts/006_ddl_create_table_participates_table.sql" relativeToChangelogFile="true"/>
     <include file="scripts/007_ddl_create_table_engine.sql" relativeToChangelogFile="true"/>
@@ -21,8 +20,11 @@
     <include file="scripts/016_ddl_create_column_name_and_price.sql" relativeToChangelogFile="true"/>
     <include file="scripts/017_ddl_create_column_sale_status.sql" relativeToChangelogFile="true"/>
     <include file="scripts/018_ddl_create_column_phone.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/019_dml_init_auto_user_admin.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/020_ddl_change_column_auto_post_id.sql" relativeToChangelogFile="true"/>
-    <include file="scripts/021_ddl_change_column_login_from_table_auto_user.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/019_ddl_change_column_auto_post_id.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/020_ddl_change_column_login_from_table_auto_user.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/021_dml_init_auto_user_admin.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/022_dml_init_add_engine.sql" relativeToChangelogFile="true"/>
+
+
 
 </databaseChangeLog>

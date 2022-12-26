@@ -15,18 +15,14 @@ import java.util.List;
 @Slf4j
 public class SimpleEngineService implements EngineService {
 
-    private final static List<String> ENGINE_CAPACITY = List.of(
-            "1.4", "1.5", "1.6", "1.8", "2.0", "2.2",
-            "2.5", "3.0", "3.5"
-    );
-
     private final EngineRepository engineRepository;
+
+    @Override
+    public List<Engine> findAll() {
+        return engineRepository.findAll();
+    }
 
     public Engine add(Engine engine) {
         return engineRepository.add(engine);
-    }
-
-    public List<String> getEngineCapacity() {
-        return new ArrayList<>(ENGINE_CAPACITY);
     }
 }

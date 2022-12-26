@@ -3,6 +3,8 @@ package ru.job4j.cars.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Модель данных двигателя
@@ -30,4 +32,16 @@ public class Engine {
      */
     private String name;
 
+
+    /**
+     * Автомобили с двигателем данного типа
+     */
+    @ToString.Exclude
+    @OneToMany(mappedBy = "engine")
+    private List<Car> cars = new ArrayList<>();
+
+    public Engine(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

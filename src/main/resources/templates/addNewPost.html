@@ -81,8 +81,8 @@
                         <select class="form-control" id="engineCapacity" name="engineCapacity">
                             <option
                                     th:each="capacity: ${engineCapacity}"
-                                    th:value="${capacity}"
-                                    th:text="${capacity}">
+                                    th:value="${capacity.name}"
+                                    th:text="${capacity.name}">
                             </option>
                         </select>
                     </div>
