@@ -28,9 +28,10 @@ public class Car {
     private int id;
 
     /**
-     * Название автомобиля
+     * Марка автомобиля
      */
-    private String name;
+    @Column(name = "name")
+    private String mark;
 
     /**
      * Двигатель автомобиля

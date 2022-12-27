@@ -90,7 +90,7 @@ public class HibernatePostRepository implements PostRepository {
 
     public List<Post> getPostsWithCertainBrandOfCar(String carBrand) {
         return crudRepository.query(
-                "select p from Post p join fetch p.car c where c.name = :fCarBrand",
+                "select p from Post p join fetch p.car c where c.mark = :fCarBrand",
                 Post.class, Map.of("fCarBrand", carBrand));
     }
 

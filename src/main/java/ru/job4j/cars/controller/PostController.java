@@ -100,7 +100,7 @@ public class PostController {
         driverService.add(driver);
 
         Car car = Car.builder()
-                .name(carMark)
+                .mark(carMark)
                 .engine(engine).driver(driver)
                 .build();
         carService.add(car);
@@ -156,7 +156,7 @@ public class PostController {
         driverService.add(driver);
 
         Car car = Car.builder()
-                .name(carMark)
+                .mark(carMark)
                 .engine(engine).driver(driver)
                 .build();
         carService.add(car);

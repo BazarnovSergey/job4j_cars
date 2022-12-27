@@ -34,10 +34,10 @@ class HibernateCarRepositoryTest {
         HibernateEngineRepository engineStore = new HibernateEngineRepository(new HibernateCrudRepository(SESSION_FACTORY));
         Engine engine = Engine.builder().name("2.4").build();
         engineStore.add(engine);
-        Car car = Car.builder().name("Audi").engine(engine).build();
+        Car car = Car.builder().mark("Audi").engine(engine).build();
         carStore.add(car);
         Car result = carStore.findById(car.getId()).get();
-        assertThat(result.getName()).isEqualTo(car.getName());
+        assertThat(result.getMark()).isEqualTo(car.getMark());
     }
 
     @Test
@@ -50,14 +50,14 @@ class HibernateCarRepositoryTest {
         engineStore.add(engine1);
         engineStore.add(engine2);
         engineStore.add(engine3);
-        Car car = Car.builder().name("Audi").engine(engine1).build();
-        Car car2 = Car.builder().name("BMW").engine(engine2).build();
-        Car car3 = Car.builder().name("Mercedes-Benz").engine(engine3).build();
+        Car car = Car.builder().mark("Audi").engine(engine1).build();
+        Car car2 = Car.builder().mark("BMW").engine(engine2).build();
+        Car car3 = Car.builder().mark("Mercedes-Benz").engine(engine3).build();
         cartStore.add(car);
         cartStore.add(car2);
         cartStore.add(car3);
         Car result = cartStore.findById(car2.getId()).get();
-        assertThat(result.getName()).isEqualTo(car2.getName());
+        assertThat(result.getMark()).isEqualTo(car2.getMark());
     }
 
 }

@@ -38,7 +38,7 @@ class PostControllerTest {
                 .build();
         Car car = Car.builder()
                 .id(1)
-                .name("carName")
+                .mark("carName")
                 .engine(engine)
                 .driver(driver)
                 .build();
@@ -90,7 +90,7 @@ class PostControllerTest {
                 .build();
         Car car = Car.builder()
                 .id(1)
-                .name("carName")
+                .mark("carName")
                 .engine(engine)
                 .driver(driver)
                 .build();
@@ -116,7 +116,7 @@ class PostControllerTest {
                 simpleEngineService,
                 simpleDriverService
         );
-        String page = postController.createPost(input, car.getName(), model,
+        String page = postController.createPost(input, car.getMark(), model,
                 "1.6", multipartFile, session);
         verify(simplePostService).add(input);
         assertThat(page, is("redirect:/posts"));
@@ -135,7 +135,7 @@ class PostControllerTest {
                 .build();
         Car car = Car.builder()
                 .id(1)
-                .name("carName")
+                .mark("carName")
                 .engine(engine)
                 .driver(driver)
                 .build();
@@ -172,9 +172,9 @@ class PostControllerTest {
                 simpleEngineService,
                 simpleDriverService
         );
-        postController.createPost(input, car.getName(), model,
+        postController.createPost(input, car.getMark(), model,
                 "1.6", multipartFile, session);
-        String page = postController.updatePost(input2, car.getName(), "1.6",
+        String page = postController.updatePost(input2, car.getMark(), "1.6",
                 multipartFile, session);
         verify(simplePostService).update(input2);
         assertThat(page, is("redirect:/posts"));

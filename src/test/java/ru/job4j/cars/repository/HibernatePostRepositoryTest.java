@@ -89,15 +89,15 @@ class HibernatePostRepositoryTest {
         Engine engine2 = Engine.builder().name("2.0").build();
         engineStore.add(engine1);
         engineStore.add(engine2);
-        Car car = Car.builder().name("Audi").engine(engine1).build();
-        Car car2 = Car.builder().name("BMW").engine(engine2).build();
+        Car car = Car.builder().mark("Audi").engine(engine1).build();
+        Car car2 = Car.builder().mark("BMW").engine(engine2).build();
         carStore.add(car);
         carStore.add(car2);
         Post post = Post.builder().car(car).build();
         postStore.add(post);
-        String result = car.getName();
-        List<Post> resultDb = postStore.getPostsWithCertainBrandOfCar(car.getName());
-        assertThat(resultDb.get(0).getCar().getName()).isEqualTo(result);
+        String result = car.getMark();
+        List<Post> resultDb = postStore.getPostsWithCertainBrandOfCar(car.getMark());
+        assertThat(resultDb.get(0).getCar().getMark()).isEqualTo(result);
     }
 
 }
